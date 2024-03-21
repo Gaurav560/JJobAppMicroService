@@ -3,9 +3,13 @@ package com.telusko.Job.impl;
 import com.telusko.Job.Job;
 import com.telusko.Job.JobRepo;
 import com.telusko.Job.JobService;
+import com.telusko.Job.dto.JobDTO;
+import com.telusko.Job.external.Company;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobServiceImpl implements JobService {
@@ -15,12 +19,23 @@ public class JobServiceImpl implements JobService {
     public JobServiceImpl(JobRepo jobRepo) {
         this.jobRepo = jobRepo;
     }
-
+    private JobDTO convertJobToJobDTO(Job job) {
+        JobDTO jobDTO = new JobDTO();
+        RestTemplate restTemplate = new RestTemplate();
+        jobDTO.setJob(job);
+        Company company = restTemplate.getForObject("http://localhost:9092/companies/" + job.getCompanyId(), Company.class);
+        jobDTO.setCompany(company);
+        return jobDTO;
+    }
 
     @Override
-    public List<Job> findAll() {
-        return jobRepo.findAll();
+    public List<JobDTO> findAll() {
+        List<Job> jobs = jobRepo.findAll();
+        return jobs.stream().map(this::convertJobToJobDTO).collect(Collectors.toList());
+
     }
+
+
 
 
     @Override

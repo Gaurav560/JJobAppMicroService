@@ -1,10 +1,12 @@
 package com.telusko.Job;
 
+import com.telusko.Job.dto.JobDTO;
+
 import java.util.List;
 
 
 public interface JobService {
-    List<Job> findAll();
+    List<JobDTO> findAll();
 
     void createJob(Job job);
 
