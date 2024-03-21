@@ -11,7 +11,7 @@ public interface JobService {
 
     void createJob(Job job);
 
-    Job getJobById(Integer id);
+    JobDTO getJobById(Integer id);
 
     Boolean deleteJobById(Integer id);
 
