@@ -1,6 +1,7 @@
-package com.telusko.Job;
+package com.telusko.Job.service;
 
 import com.telusko.Job.dto.JobDTO;
+import com.telusko.Job.model.Job;
 
 import java.util.List;
 

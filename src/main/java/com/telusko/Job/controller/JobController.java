@@ -1,6 +1,8 @@
-package com.telusko.Job;
+package com.telusko.Job.controller;
 
+import com.telusko.Job.service.JobService;
 import com.telusko.Job.dto.JobDTO;
+import com.telusko.Job.model.Job;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

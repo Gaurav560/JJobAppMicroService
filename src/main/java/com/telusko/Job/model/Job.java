@@ -1,4 +1,4 @@
-package com.telusko.Job;
+package com.telusko.Job.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

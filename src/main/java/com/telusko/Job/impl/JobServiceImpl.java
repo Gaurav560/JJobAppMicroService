@@ -1,8 +1,8 @@
 package com.telusko.Job.impl;
 
-import com.telusko.Job.Job;
-import com.telusko.Job.JobRepo;
-import com.telusko.Job.JobService;
+import com.telusko.Job.model.Job;
+import com.telusko.Job.repo.JobRepo;
+import com.telusko.Job.service.JobService;
 import com.telusko.Job.dto.JobDTO;
 import com.telusko.Job.external.Company;
 import org.springframework.stereotype.Service;
