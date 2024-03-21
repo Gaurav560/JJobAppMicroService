@@ -8,6 +8,8 @@ import com.telusko.Job.model.Job;
 import com.telusko.Job.repo.JobRepo;
 import com.telusko.Job.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -30,9 +32,11 @@ public class JobServiceImpl implements JobService {
 
         //  RestTemplate restTemplate=new RestTemplate();
         Company company = restTemplate.getForObject("http://COMPANY-APP-MICROSERVICE:9092/companies/" + job.getCompanyId(), Company.class);
-        //   List<Review> reviews=restTemplate.exchange("http://REVIEW-APP-MICROSERVICE:9093/reviews"+job.getCompanyId(),);
-      
-        return JobMapper.mapToJobDTO(job,company);
+        List<Review> reviews= restTemplate
+                .exchange("http://REVIEW-APP-MICROSERVICE:9093/reviews?companyId=" + job.getCompanyId(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Review>>() {})
+                .getBody();
+
+        return JobMapper.mapToJobDTO(job,company,reviews);
     }
 
     @Override

@@ -1,7 +1,10 @@
 package com.telusko.Job.dto;
 
 import com.telusko.Job.external.Company;
+import com.telusko.Job.external.Review;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class JobDTO {
@@ -13,5 +16,5 @@ public class JobDTO {
     private String maxSalary;
     private String location;
     private Company company;
-    // private Review review;
+     private List<Review> reviews;
 }
